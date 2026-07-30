@@ -1,40 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>DBI Calculator</title>
+    <meta charset="UTF-8">
+    <title>DBI Clinic Calculator</title>
     <style>
         body { font-family: Arial, sans-serif; padding: 20px; }
-        input, select, button { margin-bottom: 15px; padding: 5px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background-color: #f4f4f4; }
+        input, select { width: 90%; padding: 4px; }
+        button { padding: 8px 15px; margin-right: 10px; cursor: pointer; }
+        .hidden { display: none; }
+        .tab-btn { background: #e0e0e0; border: none; font-size: 16px; padding: 10px 20px; }
+        .tab-btn.active { background: #4CAF50; color: white; font-weight: bold; }
+        .results-box { font-size: 0.85em; background: #e8f5e9; padding: 5px; min-height: 40px; }
+        .summary-card { border: 1px solid #ccc; padding: 15px; margin-bottom: 10px; width: 300px; display: inline-block; margin-right: 15px; background: #f9f9f9;}
     </style>
 </head>
 <body>
-    <h1>Double Burden Index Calculator</h1>
+    <h1>Double Burden Index (DBI) Calculator</h1>
     
-    <label>Gender:</label><br>
-    <select id="gender">
-        <option value="boy">Boy</option>
-        <option value="girl">Girl</option>
-    </select>
-    <br>
+    <!-- Tab Navigation -->
+    <div>
+        <button id="btn-data" class="tab-btn active" onclick="switchTab('data')">Data Entry</button>
+        <button id="btn-summary" class="tab-btn" onclick="switchTab('summary')">Summary Report</button>
+    </div>
 
-    <label>Age (in months):</label><br>
-    <input type="number" id="age" step="any">
-    <br>
+    <!-- TAB 1: Data Entry -->
+    <div id="tab-data">
+        <br>
+        <button onclick="addRow()">+ Add Child Row</button>
+        <button onclick="calculateAll()" style="background-color: #2196F3; color: white;">Calculate All Rows</button>
 
-    <label>Weight (kg):</label><br>
-    <input type="number" id="weight" step="any">
-    <br>
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>Child Name / ID</th>
+                    <th>Gender</th>
+                    <th>DOB</th>
+                    <th>DOM</th>
+                    <th>Weight (kg)</th>
+                    <th>Height (cm)</th>
+                    <th style="width: 250px;">Results (Z-Scores & DBI)</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- Rows will appear here -->
+            </tbody>
+        </table>
+    </div>
 
-    <label>Height/Length (cm):</label><br>
-    <input type="number" id="height" step="any">
-    <br>
+    <!-- TAB 2: Summary Dashboard -->
+    <div id="tab-summary" class="hidden">
+        <h2>Clinic Summary</h2>
+        <div id="summaryArea">
+            <p>Run calculations on the Data Entry tab to generate the summary.</p>
+        </div>
+    </div>
 
-    <button onclick="calculateZScores()">Calculate</button>
-
-    <h2>Results:</h2>
-    <div id="results">Waiting for data...</div>
-
-    <!-- This line at the bottom connects your webpage to your data and math -->
     <script src="script.js"></script>
+    <script>
+        // We add one empty row automatically when the page loads
+        window.onload = function() { addRow(); };
+    </script>
 </body>
 </html>
