@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DBI Calculator</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        input, select, button { margin-bottom: 15px; padding: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Double Burden Index Calculator</h1>
+    
+    <label>Gender:</label><br>
+    <select id="gender">
+        <option value="boy">Boy</option>
+        <option value="girl">Girl</option>
+    </select>
+    <br>
+
+    <label>Age (in months):</label><br>
+    <input type="number" id="age" step="any">
+    <br>
+
+    <label>Weight (kg):</label><br>
+    <input type="number" id="weight" step="any">
+    <br>
+
+    <label>Height/Length (cm):</label><br>
+    <input type="number" id="height" step="any">
+    <br>
+
+    <button onclick="calculateZScores()">Calculate</button>
+
+    <h2>Results:</h2>
+    <div id="results">Waiting for data...</div>
+
+    <!-- This line at the bottom connects your webpage to your data and math -->
+    <script src="script.js"></script>
+</body>
+</html>
